@@ -23,7 +23,7 @@
                 return res.json(sport)
             })
         } else {
-            getSports().then(function(sports) {
+            getSports(req.query).then(function(sports) {
                 return res.json(sports);
             })
         }
@@ -38,17 +38,18 @@
 
     exports.getSport = function(req, res, next) {
         getSport(req.params.id).then(function(sport) {
-            return res.json(sport);
+            console.log(sport)
+            return res.json(sport[0]);
         })
     }
 
 
-    function getSports() {
+    function getSports(query) {
 
-        var params = {};
+        var params = query
 
         var options = {
-            // with: ['league']
+            with: ['league']
         };
 
         return Sport.findAll(params, options);
