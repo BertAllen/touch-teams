@@ -13,7 +13,13 @@
                     localField: 'sport',
                     foreignKey: 'sportId'
                 }
-            }
+            },
+			hasMany: {
+				team: {
+					localField: 'team',
+					foreignKey: 'leagueId'
+				}
+			}
 		}
     })
     

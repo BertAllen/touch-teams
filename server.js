@@ -6,6 +6,7 @@ var path = require('path');
 var api = require('./server-assets/api/api');
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'));
 app.use('/', api.router);
 
