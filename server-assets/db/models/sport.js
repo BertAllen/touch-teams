@@ -20,7 +20,7 @@
     exports.getSports = function(req, res, next) {
         if (req.params.id) {
             getSport(req.params.id).then(function(sport) {
-                return res.json(sport)
+                return res.json(sport);
             })
         } else {
             getSports(req.query).then(function(sports) {
@@ -31,14 +31,15 @@
 
     exports.addSport = function(req, res, next) {
 
-        addSport(req.body.name, req.body.description).then(function(sport) {
-            return res.json(sport)
+        addSport(req.body.name, req.body.description)
+            .then(function (sport) {
+                return res.json(sport);
         })
     }
 
     exports.getSport = function(req, res, next) {
         getSport(req.params.id).then(function(sport) {
-            console.log(sport)
+            console.log(sport);
             return res.json(sport[0]);
         })
     }
@@ -46,7 +47,7 @@
 
     function getSports(query) {
 
-        var params = query
+        var params = query;
 
         var options = {
             with: ['league']

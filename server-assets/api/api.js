@@ -22,15 +22,15 @@
      * Your Code Here
      */
 
-    // router.route('/teams/:id?')
-    //     .get(Team.getTeams)
-    //     .post(Team.addTeam)
+    router.route('/teams/:id?')
+        .get(Team.getTeams)
+        .post(Team.addTeam)
     //     .put(Team.editTeam)
     //     .delete(Team.removeTeam);
 
-    // router.route('/players/:id?')
-    //     .get(Player.getPlayers)
-    //     .post(Player.addPlayer)
+    router.route('/players/:id?')
+        .get(Player.getPlayers)
+        .post(Player.addPlayer)
     //     .put(Player.editPlayer)
     //     .delete(Player.removePlayer);    
     

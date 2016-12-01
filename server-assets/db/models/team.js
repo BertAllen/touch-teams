@@ -24,36 +24,52 @@
     })
     
     exports.getTeams = function (req, res, next) {
-
-		getTeams().then(
-			function (teams) {
-				res.json(teams);
-			}
-		);
+        if (req.params.id) {
+            getTeams(req.params.id).then(
+                function (teams) {
+                    return res.json(teams);
+                })
+        } else {
+            getTeams(req.query)
+                .then(function (teams) {
+                    return res.json(teams)
+                })
+        }
 	}	
 	
 	exports.addTeam = function (req, res, next) {
 
-		addTeam(req.body).then(
-			function (team) {
+        addTeam(req.body.name, req.body.description)
+            .then(function (team) {
 				return res.json(team);
 			}
 		);
-	}
-    
-    function getTeams() {
+    }
 
-		var params = {};
+    exports.getTeam = function (req, res, next) {
+        getTeam(req.params.id).then(function (team) {
+            console.log(team);
+            return res.json(team[0]);
+    })
+}
+    
+    function getTeams(query) {
+
+		var params = query;
 		
 		var options = {
-			//  with: ['']
+			 with: ['player']
 		};
 		
-		return Team.findAll(params, options);	
+		return Team.find(id, options);	
 	}
 	
-	function addTeam(team) {
+	function addTeam(name, description) {
 
-		return Team.create(team);			
+        return Team.create({
+            id: uuid.v4(),
+            name: name,
+            description: description
+        });			
 	}
 }())

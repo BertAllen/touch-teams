@@ -6,7 +6,7 @@
             controller: SportsController
         })
         
-        function SportsController(Models){
+        function SportsController(Models, $state){
             var $ctrl = this;
             
             Models.Sport.findAll({where: {name: $state.params.sport}}, {bypassCache:true}).then(function(sports){
